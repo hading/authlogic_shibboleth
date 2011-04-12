@@ -16,7 +16,7 @@ module AuthlogicShibboleth
 
     module Methods
       def self.included(klass)
-        return if !klass.column_names.include?("shibboleth_id") #we need to store our ids in the database
+        #return if !klass.column_names.include?("shibboleth_id") #we need to store our ids in the database
         
         klass.class_eval do
           validates_uniqueness_of :shibboleth_id, :scope => validations_scope

@@ -59,13 +59,15 @@ module AuthlogicShibboleth
         #Find the shibboleth_id user in the database
         self.attempted_record = klass.send(find_by_shibboleth_id_method, shibboleth_id)
 
+        #TODO this may be where we add a new user record if necessary
         unless self.attempted_record
           errors.add_to_base(I18n.t('error_messages.shibboleth_id_not_found'), :default => "Your Shibboleth ID was not found.")
         end
       end
 
       def find_by_shibboleth_id_method
-        self.class.find_by_shibboleth_id_method
+        :find_by_email
+        #self.class.find_by_shibboleth_id_method
       end
 
       def shibboleth_id
